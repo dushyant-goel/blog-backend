@@ -5,12 +5,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { BlogModule } from './blog/blog.module';
+import { BlogModule } from './blogs/blog.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 
 @Module({
   imports: [
+    BlogModule,
+    AuthModule,
+    UsersModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'data.db',
@@ -22,9 +25,6 @@ import { join } from 'path';
       context: ({ req }) => ({ req }),
       driver: ApolloDriver,
     }),
-    BlogModule,
-    AuthModule,
-    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

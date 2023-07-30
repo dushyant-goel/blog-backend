@@ -1,17 +1,23 @@
-// import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Blog } from '../blog/blog.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  BaseEntity,
+} from 'typeorm';
+import { Blog } from '../blogs/blog.entity';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-@ObjectType()
+@Entity()
 export class User {
-  @Field(() => Int)
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Field()
+  @Column()
   username: string;
 
-  @Field()
+  @Column()
   password: string;
 
-  //   @OneToMany(() => Blog, (blog) => blog.author)
-  //   blogs: Blog[];
+  @OneToMany(() => Blog, (blog) => blog.author)
+  blogs: Blog[];
 }

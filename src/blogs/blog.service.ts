@@ -10,6 +10,7 @@ export class BlogService {
   ) {}
 
   async findAll(): Promise<Blog[]> {
+    // return this.blogRepository.find();
     return this.blogRepository.find({ relations: ['author'] });
   }
 
@@ -21,7 +22,7 @@ export class BlogService {
     const blog = this.blogRepository.create({
       title,
       content,
-      // author: { id: authorId },
+      author: { id: authorId },
     });
     console.log('Created Blog:', blog);
     return this.blogRepository.save(blog);

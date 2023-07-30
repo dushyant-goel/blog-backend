@@ -11,13 +11,13 @@ export class BlogResolver {
     return this.blogService.findAll();
   }
 
-  //   @Mutation(() => Blog)
-  //   async createBlog(
-  //     @Args('title') title: string,
-  //     @Args('content') content: string,
-  //     @Args('authorId') authorId: number,
-  //   ): Promise<Blog> {
-  //     const blog = await this.blogService.create(title, content, authorId);
-  //     return blog;
-  //   }
+  @Mutation(() => Blog)
+  async createBlog(
+    @Args('title') title: string,
+    @Args('content') content: string,
+    @Args('authorId') authorId: number,
+  ): Promise<Blog> {
+    const blog = await this.blogService.create(title, content, authorId);
+    return blog;
+  }
 }
