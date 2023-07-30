@@ -36,3 +36,4 @@ lerna-debug.log*
 
 # secrets
 src/auth/constants.ts
+data.db

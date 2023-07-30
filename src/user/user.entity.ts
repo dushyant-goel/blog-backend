@@ -1,12 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  BaseEntity,
-} from 'typeorm';
-import { Blog } from '../blogs/blog.entity';
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Blog } from '../blog/blog.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
