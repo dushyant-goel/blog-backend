@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { BlogModule } from './blog/blog.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -16,14 +17,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       entities: [__dirname + '/**/*.entity(.ts,.js)'],
       synchronize: true,
     }),
-    BlogModule,
-    AuthModule,
-    UsersModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      autoSchemaFile: 'schema.gql',
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       context: ({ req }) => ({ req }),
       driver: ApolloDriver,
     }),
+    BlogModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

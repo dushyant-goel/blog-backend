@@ -21,7 +21,7 @@ export class BlogService {
     const blog = this.blogRepository.create({
       title,
       content,
-      author: { id: authorId },
+      // author: { id: authorId },
     });
     console.log('Created Blog:', blog);
     return this.blogRepository.save(blog);
