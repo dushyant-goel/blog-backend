@@ -11,6 +11,11 @@ export class BlogResolver {
     return this.blogService.findAll();
   }
 
+  @Query(() => Blog, { name: 'getBlogById' })
+  async getBlogById(@Args('id') id: number) {
+    return this.blogService.findOne(id);
+  }
+
   @Mutation(() => Blog)
   async createBlog(
     @Args('title') title: string,

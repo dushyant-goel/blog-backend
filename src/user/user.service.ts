@@ -13,9 +13,27 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  async findOne(username: string): Promise<User> {
+  async findAllWithBlogs(): Promise<User[]> {
+    return this.userRepository.find({ relations: ['blogs'] });
+  }
+
+  async findOne(id: number): Promise<User> {
+    return this.userRepository.findOne({ where: { id: id } });
+  }
+
+  async findOneWithBlogs(id: number): Promise<User> {
+    console.log(id);
+    return this.userRepository.findOne({
+      relations: ['blogs'],
+      where: { id: id },
+    });
+  }
+
+  async findByUsername(username: string): Promise<User> {
     console.log(username);
-    return this.userRepository.findOneBy({ username });
+    return this.userRepository.findOne({
+      where: { username: username },
+    });
   }
 
   async create(username: string, password: string): Promise<User> {

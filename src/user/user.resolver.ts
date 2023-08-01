@@ -11,6 +11,11 @@ export class UserResolver {
     return this.userService.findAll();
   }
 
+  @Query(() => User, { name: 'getUser' })
+  async getUser(@Args('id') id: number): Promise<User> {
+    return this.userService.findOne(id);
+  }
+
   @Mutation(() => User)
   async createUser(
     @Args('username') username: string,
