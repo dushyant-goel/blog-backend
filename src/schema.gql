@@ -3,9 +3,15 @@
 # ------------------------------------------------------
 
 type Blog {
-  id: Int!
   title: String!
   content: String!
+  author: User!
+}
+
+type User {
+  username: String!
+  password: String!
+  blogs: [Blog!]!
 }
 
 type Query {
@@ -13,5 +19,5 @@ type Query {
 }
 
 type Mutation {
-  createBlog(title: String!, content: String!): Blog!
+  createBlog(title: String!, content: String!, authorId: Float!): Blog!
 }

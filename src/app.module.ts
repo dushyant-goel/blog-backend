@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { GraphQLModule } from '@nestjs/graphql';
-// import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-// import { join } from 'path';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -22,11 +22,10 @@ import { User } from './user/user.entity';
       entities: [Blog, User],
       synchronize: true,
     }),
-    // GraphQLModule.forRoot<ApolloDriverConfig>({
-    //   autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-    //   context: ({ req }) => ({ req }),
-    //   driver: ApolloDriver,
-    // }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      driver: ApolloDriver,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
