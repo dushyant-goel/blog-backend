@@ -11,9 +11,19 @@ export class UserResolver {
     return this.userService.findAll();
   }
 
+  @Query(() => [User], { name: 'usersWithBlogs' })
+  async getAllUserWithBlogs(): Promise<User[]> {
+    return this.userService.findAllWithBlogs();
+  }
+
   @Query(() => User, { name: 'getUser' })
   async getUser(@Args('id') id: number): Promise<User> {
-    return this.userService.findOne(id);
+    return this.userService.findOneWithBlogs(id);
+  }
+
+  @Query(() => User, { name: 'getUserByUsername' })
+  async getUserByUsername(@Args('username') username: string): Promise<User> {
+    return this.userService.findByUsernameWithBlogs(username);
   }
 
   @Mutation(() => User)

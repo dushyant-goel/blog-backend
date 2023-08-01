@@ -11,7 +11,7 @@ export class BlogResolver {
     return this.blogService.findAll();
   }
 
-  @Query(() => Blog, { name: 'getBlogById' })
+  @Query(() => Blog, { name: 'getBlog' })
   async getBlogById(@Args('id') id: number) {
     return this.blogService.findOne(id);
   }

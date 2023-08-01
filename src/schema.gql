@@ -16,9 +16,11 @@ type User {
 
 type Query {
   users: [User!]!
+  usersWithBlogs: [User!]!
   getUser(id: Float!): User!
+  getUserByUsername(username: String!): User!
   blogs: [Blog!]!
-  getBlogById(id: Float!): Blog!
+  getBlog(id: Float!): Blog!
 }
 
 type Mutation {

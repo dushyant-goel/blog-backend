@@ -11,11 +11,13 @@ export class BlogService {
 
   async findAll(): Promise<Blog[]> {
     return this.blogRepository.find({ relations: ['author'] });
-    // return this.blogRepository.find();
   }
 
   async findOne(id: number): Promise<Blog> {
-    return this.blogRepository.findOneBy({ id });
+    return this.blogRepository.findOne({
+      where: { id: id },
+      relations: ['author'],
+    });
   }
 
   async create(

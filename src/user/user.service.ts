@@ -18,7 +18,7 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<User> {
-    return this.userRepository.findOne({ where: { id: id } });
+    return this.userRepository.findOneBy({ id });
   }
 
   async findOneWithBlogs(id: number): Promise<User> {
@@ -31,8 +31,16 @@ export class UserService {
 
   async findByUsername(username: string): Promise<User> {
     console.log(username);
+    return this.userRepository.findOneBy({
+      username,
+    });
+  }
+
+  async findByUsernameWithBlogs(username: string): Promise<User> {
+    console.log(username);
     return this.userRepository.findOne({
       where: { username: username },
+      relations: ['blogs'],
     });
   }
 
