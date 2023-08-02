@@ -14,6 +14,11 @@ type User {
   blogs: [Blog!]!
 }
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
 type Query {
   users: [User!]!
   usersWithBlogs: [User!]!
@@ -26,4 +31,5 @@ type Query {
 type Mutation {
   createUser(username: String!, password: String!): User!
   createBlog(title: String!, content: String!, authorId: Float!): Blog!
+  signin(username: String!, password: String!): AuthPayload!
 }

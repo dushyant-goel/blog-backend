@@ -1,6 +1,8 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Field } from '@nestjs/graphql';
 import { Blog } from './blog.entity';
 import { BlogService } from './blog.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Resolver(() => Blog)
 export class BlogResolver {
@@ -17,7 +19,8 @@ export class BlogResolver {
     return this.blogService.findOne(id);
   }
 
-  @Mutation(() => Blog)
+  @Mutation(() => Blog, { name: 'createBlog' })
+  @UseGuards(AuthGuard)
   async createBlog(
     @Args('title') title: string,
     @Args('content') content: string,
