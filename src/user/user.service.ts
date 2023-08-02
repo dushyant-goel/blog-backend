@@ -22,7 +22,7 @@ export class UserService {
   }
 
   async findOneWithBlogs(id: number): Promise<User> {
-    console.log(id);
+    console.log(`User Service: ${id}`);
     return this.userRepository.findOne({
       relations: ['blogs'],
       where: { id: id },

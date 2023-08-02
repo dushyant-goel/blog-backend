@@ -18,6 +18,7 @@ export class UserResolver {
 
   @Query(() => User, { name: 'getUser' })
   async getUser(@Args('id') id: number): Promise<User> {
+    console.log(`User Resolver: ${id}`);
     return this.userService.findOneWithBlogs(id);
   }
 

@@ -13,6 +13,7 @@ export class BlogResolver {
 
   @Query(() => Blog, { name: 'getBlog' })
   async getBlogById(@Args('id') id: number) {
+    console.log(`Resolver: ${id}`);
     return this.blogService.findOne(id);
   }
 

@@ -14,6 +14,7 @@ export class BlogService {
   }
 
   async findOne(id: number): Promise<Blog> {
+    console.log(`Service: ${id}`);
     return this.blogRepository.findOne({
       where: { id: id },
       relations: ['author'],
